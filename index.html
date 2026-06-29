@@ -2,23 +2,19 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>المؤقت الخاص بي</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FYR Timer</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <div class="container">
-    <h1>المؤقت</h1>
-
-    <div class="timer">
-      <span id="minutes">05</span> :
-      <span id="seconds">00</span>
-    </div>
-
-    <button onclick="startTimer()">ابدأ</button>
-    <button onclick="resetTimer()">إعادة</button>
+<div class="overlay">
+  <div id="timer">00:00:00</div>
+  <div class="buttons">
+    <button id="start">تشغيل</button>
+    <button id="pause">إيقاف</button>
+    <button id="reset">إعادة</button>
   </div>
-
-  <script src="script.js"></script>
+</div>
+<script src="script.js"></script>
 </body>
 </html>

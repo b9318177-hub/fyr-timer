@@ -1,34 +1,32 @@
-let time = 300;
-let interval;
+let seconds = 0;
+let timer = null;
 
-function startTimer() {
-  if (interval) return;
+function updateTimer() {
+  seconds++;
+  let hrs = Math.floor(seconds / 3600);
+  let mins = Math.floor((seconds % 3600) / 60);
+  let secs = seconds % 60;
 
-  interval = setInterval(() => {
-    if (time <= 0) {
-      clearInterval(interval);
-      alert("انتهى الوقت!");
-      return;
-    }
-
-    time--;
-
-    let minutes = Math.floor(time / 60);
-    let seconds = time % 60;
-
-    document.getElementById("minutes").textContent =
-      String(minutes).padStart(2, "0");
-
-    document.getElementById("seconds").textContent =
-      String(seconds).padStart(2, "0");
-  }, 1000);
+  document.getElementById("timer").textContent =
+    String(hrs).padStart(2, "0") + ":" +
+    String(mins).padStart(2, "0") + ":" +
+    String(secs).padStart(2, "0");
 }
 
-function resetTimer() {
-  clearInterval(interval);
-  interval = null;
-  time = 300;
+document.getElementById("start").onclick = function () {
+  if (timer === null) {
+    timer = setInterval(updateTimer, 1000);
+  }
+};
 
-  document.getElementById("minutes").textContent = "05";
-  document.getElementById("seconds").textContent = "00";
-}
+document.getElementById("pause").onclick = function () {
+  clearInterval(timer);
+  timer = null;
+};
+
+document.getElementById("reset").onclick = function () {
+  clearInterval(timer);
+  timer = null;
+  seconds = 0;
+  document.getElementById("timer").textContent = "00:00:00";
+};
